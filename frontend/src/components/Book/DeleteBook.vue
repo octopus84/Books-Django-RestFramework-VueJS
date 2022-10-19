@@ -9,7 +9,9 @@
         </div>
         <div class="row">
             <div class="col">
-                <b-button v-on:click="deleteBook" variant="danger">Eliminar</b-button>
+                <b-button v-on:click="deleteBook" variant="warning">Eliminar</b-button>
+                <b-button type="submit" variant="danger" :to="{ name: 'ListBook'} ">
+                    Cancelar</b-button>
             </div>
         </div>
     </div>
