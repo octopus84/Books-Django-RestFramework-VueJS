@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col text-left">
                 <h2>Listado de Libros</h2>
+                <b-button size="sm" :to="{name: 'NewBook'}" variant="success">
+                    Nuevo Libro
+                </b-button>
                 <div class="col-md-12">
                     <b-table striped hover :items="books" :fields="fields">
 
@@ -13,7 +16,8 @@
                                 </b-btn>
                             </span>
                             <span>
-                                <b-btn @click="(item)" variant="danger">Eliminar</b-btn>
+                                <b-btn variant="danger" :to="{  name:'DeleteBook', params: {bookId: item.id} }">Eliminar
+                                </b-btn>
                             </span>
                         </template>
 
