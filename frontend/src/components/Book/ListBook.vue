@@ -5,14 +5,18 @@
                 <h2>Listado de Libros</h2>
                 <div class="col-md-12">
                     <b-table striped hover :items="books" :fields="fields">
+
                         <template v-slot:cell(action)="{ item }">
                             <span>
-                                <b-btn @click="editItem(item)" size="lg" variant="primary">Editar</b-btn>
+                                <!-- <b-btn @click="(item)" variant="primary" >Editar</b-btn> -->
+                                <b-btn variant="primary" :to="{  name:'EditBook', params: {bookId: item.id} }">Editar
+                                </b-btn>
                             </span>
                             <span>
-                                <b-btn @click="editItem(item)" size="lg" variant="danger">Eliminar</b-btn>
+                                <b-btn @click="(item)" variant="danger">Eliminar</b-btn>
                             </span>
                         </template>
+
                     </b-table>
                 </div>
             </div>
@@ -27,6 +31,7 @@ export default {
     data() {
         return {
             fields: [
+                { key: 'id', label: 'Id' },
                 { key: 'title', label: 'Titulo' },
                 { key: 'description', label: 'Decripcion' },
                 { key: 'action', label: 'Actión' },
@@ -37,12 +42,12 @@ export default {
     methods: {
         getBooks() {
             const path = 'http://127.0.0.1:8000/api/v1.0/books/'
+            console.log('log: ' + path)
             axios.get(path).then((response) => {
                 this.books = response.data
+            }).catch((error) => {
+                console.log(error)
             })
-                .catch((error) => {
-                    console.log(error)
-                })
         }
     },
     created() {
